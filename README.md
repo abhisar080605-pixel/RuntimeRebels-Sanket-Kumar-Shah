@@ -291,11 +291,11 @@ Unlike traditional hostel management systems, HostelFlow focuses on **end-to-end
 
 | Team Member            | Role                                          |
 | ---------------------- | --------------------------------------------- |
-| Abhinav Kumar**      | Backend Lead                                  |
-| Abhisar Porwal**     | Frontend Lead                                 |
-| Sanket Kumar Sah**   | Database & API Integration Lead               |
-| Hraday Singh Bisen** | Authentication & Security Lead                |
-| Anurag Tiwari**      | Documentation, Deployment & Presentation Lead |
+| Abhinav Kumar     | Backend Lead                                  |
+| Abhisar Porwal    | Frontend Lead                                 |
+| Sanket Kumar Sah   | Database & API Integration Lead               |
+| Hraday Singh Bisen | Authentication & Security Lead                |
+| Anurag Tiwari      | Documentation, Deployment & Presentation Lead |
 
 
 
