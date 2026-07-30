@@ -5,31 +5,67 @@ import ResidentView from "./components/ResidentView";
 import WardenView from "./components/WardenView";
 import SecurityView from "./components/SecurityView";
 
+const ROLES = {
+  RESIDENT: "resident",
+  WARDEN: "warden",
+  SECURITY: "security",
+};
+
 export default function App() {
   const [role, setRole] = useState(null);
-  const [user, setUser] = useState(residents[0]);
+  const [user] = useState(residents[0]);
   const [issues, setIssues] = useState(seedIssues);
   const [visitors, setVisitors] = useState(seedVisitors);
   const [notices, setNotices] = useState(seedNotices);
 
-  if (!role) return <RoleSelect onPick={(r) => setRole(r)} />;
+  const handleLogout = () => {
+    setRole(null);
+  };
+
+  if (!role) {
+    return <RoleSelect onPick={setRole} />;
+  }
 
   return (
-    <div style={{ background: C.bg, fontFamily: "ui-sans-serif, system-ui, sans-serif" }} className="min-h-screen">
-      {role === "resident" && (
+    <div
+      className="min-h-screen font-sans"
+      style={{ backgroundColor: C.bg }}
+    >
+      {role === ROLES.RESIDENT && (
         <ResidentView
           user={user}
-          setUser={() => setRole(null)}
-          issues={issues} setIssues={setIssues}
-          visitors={visitors} setVisitors={setVisitors}
-          notices={notices.filter(n => n.audience !== "security")}
+          onLogout={handleLogout}
+          issues={issues}
+          setIssues={setIssues}
+          visitors={visitors}
+          setVisitors={setVisitors}
+          notices={notices.filter(
+            notice =>
+              notice.audience === "all" ||
+              notice.audience === "resident"
+          )}
         />
       )}
-      {role === "warden" && (
-        <WardenView onLogout={() => setRole(null)} issues={issues} setIssues={setIssues} visitors={visitors} setVisitors={setVisitors} notices={notices} setNotices={setNotices} />
+
+      {role === ROLES.WARDEN && (
+        <WardenView
+          onLogout={handleLogout}
+          issues={issues}
+          setIssues={setIssues}
+          visitors={visitors}
+          setVisitors={setVisitors}
+          notices={notices}
+          setNotices={setNotices}
+        />
       )}
-      {role === "security" && (
-        <SecurityView onLogout={() => setRole(null)} visitors={visitors} setVisitors={setVisitors} notices={notices} />
+
+      {role === ROLES.SECURITY && (
+        <SecurityView
+          onLogout={handleLogout}
+          visitors={visitors}
+          setVisitors={setVisitors}
+          notices={notices}
+        />
       )}
     </div>
   );
