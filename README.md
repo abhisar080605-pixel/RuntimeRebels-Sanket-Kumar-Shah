@@ -4,7 +4,7 @@
 
 📌 Overview
 
-HostelFlow is a workflow-centric hostel management platform built to simplify communication between **Residents, Wardens, and Security Staff.
+HostelFlow is a workflow-centric hostel management platform built to simplify communication between Residents, Wardens, and Security Staff.
 
 Traditional hostel management relies heavily on scattered WhatsApp messages, manual registers, paper approvals, and verbal communication, often resulting in delayed maintenance, visitor confusion, and poor coordination.
 
