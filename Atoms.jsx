@@ -6,11 +6,11 @@ export function Stepper({ stages, labels, current, deniedLabel }) {
   if (deniedLabel) {
     return (
       <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: C.red }}>
-        <X size={13} /> {deniedLabel}
+        <X size={13} aria-hidden="true" /> {deniedLabel}
       </div>
     );
   }
-  const idx = stages.indexOf(current);
+  const idx = Math.max(0, stages.indexOf(current));
   return (
     <div className="flex items-center">
       {labels.map((label, i) => (
@@ -22,7 +22,7 @@ export function Stepper({ stages, labels, current, deniedLabel }) {
                 background: i <= idx ? C.accent : C.border,
               }}
             >
-              {i < idx && <Check size={10} color="#fff" />}
+              {i < idx && <Check size={10} color="#fff" aria-hidden="true" />}
               {i === idx && <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#fff" }} />}
             </div>
             <span
@@ -100,7 +100,7 @@ export function SectionLabel({ icon: Icon, children, action }) {
   return (
     <div className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-2">
-        <Icon size={15} style={{ color: C.ink }} />
+        <Icon size={15} style={{ color: C.ink }} aria-hidden="true" />
         <h3 className="text-sm font-bold" style={{ color: C.ink }}>{children}</h3>
       </div>
       {action}
@@ -114,7 +114,7 @@ export function PrivacyNote({ text }) {
       className="flex items-start gap-2 text-xs rounded-lg px-3.5 py-2.5 mb-5 border"
       style={{ background: C.accentSoft, borderColor: C.border, color: C.ink }}
     >
-      <Lock size={13} className="mt-0.5 shrink-0" style={{ color: C.accent }} />
+      <Lock size={13} className="mt-0.5 shrink-0" style={{ color: C.accent }} aria-hidden="true" />
       <span>{text}</span>
     </div>
   );
@@ -132,7 +132,7 @@ export function StatCard({ label, value, icon: Icon }) {
   return (
     <div className="rounded-lg border p-4 flex items-center gap-3" style={{ borderColor: C.border, background: C.surface }}>
       <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: C.accentSoft }}>
-        <Icon size={16} style={{ color: C.accent }} />
+        <Icon size={16} style={{ color: C.accent }} aria-hidden="true" />
       </div>
       <div>
         <div className="text-xl font-black" style={{ color: C.ink }}>{value}</div>
@@ -146,7 +146,12 @@ export function ActionBtn({ onClick, label, primary, danger }) {
   const bg = danger ? C.red : primary ? C.accent : C.bg;
   const fg = primary || danger ? "#fff" : C.ink;
   return (
-    <button onClick={onClick} className="text-[11px] font-bold px-3 py-1.5 rounded-md border" style={{ background: bg, color: fg, borderColor: primary || danger ? bg : C.border }}>
+    <button
+      type="button"
+      onClick={onClick}
+      className="text-[11px] font-bold px-3 py-1.5 rounded-md border"
+      style={{ background: bg, color: fg, borderColor: primary || danger ? bg : C.border }}
+    >
       {label}
     </button>
   );
@@ -178,7 +183,7 @@ export function NoticesFeed({ notices }) {
         <div key={n.id} className="rounded-lg border p-4" style={{ borderColor: n.urgent ? C.red : C.border, background: C.surface }}>
           <div className="flex items-center justify-between mb-1">
             <div className="font-bold text-sm flex items-center gap-2" style={{ color: C.ink }}>
-              {n.urgent && <AlertTriangle size={13} style={{ color: C.red }} />}
+              {n.urgent && <AlertTriangle size={13} style={{ color: C.red }} aria-hidden="true" />}
               {n.title}
             </div>
             <span className="text-[11px]" style={{ color: C.inkSoft }}>{n.when}</span>
